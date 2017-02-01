@@ -18,4 +18,19 @@ class MoveTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(2, 0 , 'O'), $result);
     }
+
+    public function testisPlayerWonFalse()
+    {
+        $move = new Move();
+        $state = array(
+          0 => array('X', 'O', 'X'),
+          1 => array('O', 'O', 'O'),
+          2 => array('X', '', 'O'),
+        );
+        $player = 'X';
+
+        $result = $move->isPlayerWon($state, $player);
+
+        $this->assertFalse($result);
+    }
 }
