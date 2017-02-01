@@ -1,0 +1,21 @@
+LET'S PLAY A GAME...
+
+type X or O . and then click the "Make a move" button!
+
+<form action="/play"> 
+  <table class="board" style="width:50%;border: 1px solid black">
+    {% for x in 0..2 %}
+      <tr class="row" style="border: 1px solid black">
+        {% for y in 0..2 %}
+          <td class="cell" style="border: 1px solid black">
+            <input type="input" name="{{x}}-{{y}}">
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+
+  <input type="submit" name="move" value="Make a move">
+</form>
+after the board
+
