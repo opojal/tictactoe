@@ -65,11 +65,8 @@ class Move implements MoveInterface
         for (${$col} = 0; ${$col} < $this->size; ${$col}++) {
             $countToWin = 0;
             for (${$row} = 0; ${$row} < $this->size; ${$row}++) {
-                if (!empty($boardState[$x][$y])) {
-                    $curPlayer = $boardState[$x][$y];
-                    if ($boardState[$x][$y] == $playerUnit) {
-                        $countToWin++;
-                    }
+                if ($boardState[$x][$y] == $playerUnit) {
+                    $countToWin++;
                 }
             }
 
