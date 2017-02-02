@@ -5,6 +5,7 @@ namespace TicBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use TicBundle\Utils\Move;
 
 class TicController extends Controller
@@ -36,20 +37,26 @@ class TicController extends Controller
     /**
      * @Route("/api/makeMove")
      */
-    public function makeMoveAction()
+    public function makeMoveAction(Request $request)
     {
         $move = new Move();
-        $state = array(
-          0 => array('X', 'O', ''),
-          1 => array('X', 'O', 'O'),
-          2 => array('', '', ''),
-        );
-        $result = $move->makeMove($state, 'X');
+
+        $boardState = $request->request->get('boardState');
+        $playerUnit = $request->request->get('playerUnit');
+
+        try {
+            $result = $move->makeMove($boardState, $playerUnit);
+        } catch (\Exception $ex) {
+            $result = false;
+        }
 
         $response = new JsonResponse();
         $response->setData(array(
-            'data' => $result
+            'move' => $result
         ));
+        if (!$result) {
+            $response->setStatusCode(418);
+        }
 
         return $response;
     }

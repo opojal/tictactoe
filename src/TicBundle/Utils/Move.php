@@ -16,15 +16,37 @@ class Move implements MoveInterface
      */
     public function makeMove($boardState, $playerUnit = 'X')
     {
-        $column = rand(0, 2);
-        $row = rand(0, 2);
-
         if ($this->whoWon($boardState, $playerUnit)) {
             // create a new specific exception, and throw it here
-            throw new Exception('There is a winner, no more moves!');
+            throw new \Exception('There is a winner, no more moves!');
         }
 
-        return array(2, 0, 'O');
+        //fir now, just find random move
+        $bestMove = $this->findRandomMove($boardState);
+        array_push($bestMove, 'O');
+
+        return $bestMove;
+    }
+
+    /**
+     * find a random empty combination
+     *
+     * @param array $boardState
+     * @return array
+     */
+    private function findRandomMove($boardState)
+    {
+        $openPositions = [];
+
+        foreach ($boardState as $row => $columns) {
+            foreach ($columns as $column => $value) {
+                if (empty($value)) {
+                    $openPositions[] = array($column, $row);
+                }
+            }
+        }
+
+        return $openPositions[array_rand($openPositions)];
     }
 
     /**

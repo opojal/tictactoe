@@ -16,7 +16,7 @@ class MoveTest extends \PHPUnit_Framework_TestCase
         );
         $result = $move->makeMove($state, 'X');
 
-        $this->assertEquals(array(2, 0 , 'O'), $result);
+        $this->assertEquals(3, count($result));
     }
 
     public function testisPlayerWonFalse()

@@ -1,8 +1,9 @@
-LET'S PLAY A GAME...
+<h1>LET'S PLAY A GAME...</h1>
 
-type X or O . and then click the "Make a move" button!
+type X, and just X, please :) . and then click the "Make a move" button!
 
-<form action="/play"> 
+
+<form action="/tiny.php/api/makeMove">
   <table class="board" style="width:50%;border: 1px solid black">
     {% for x in 0..2 %}
       <tr class="row" style="border: 1px solid black">
@@ -17,5 +18,13 @@ type X or O . and then click the "Make a move" button!
 
   <input type="submit" name="move" value="Make a move">
 </form>
-after the board
 
+<div class="gameover" style="display:none">
+  <h2>GAME OVER</h2>
+</div>
+
+{% block javascripts %}
+{#    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>#}
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
