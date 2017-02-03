@@ -11,7 +11,7 @@ sudo apt-get update
 sudo apt-get install curl php5-cli git
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
-apache vhost settings just to make sure you don't have to open the application without adding /tiny.php:
+apache vhost settings just to make sure you can open the application without adding /tiny.php:
 <VirtualHost *:80>
         DocumentRoot /var/www/tic/web
         DirectoryIndex tiny.php
