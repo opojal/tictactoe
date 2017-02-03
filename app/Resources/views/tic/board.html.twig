@@ -1,9 +1,12 @@
 <h1>LET'S PLAY A GAME...</h1>
 
-type X, and just X, please :) . and then click the "Make a move" button!
+<p>
+    Type X, and just X, please :) . and then click the "Make a move" button!
+    <br>
+    There is no validation yet, so you can actually fill in multiple input fields before clicking the move button for now.
+</p>
 
-
-<form action="/api/makeMove">
+<form action="api/makeMove">
   <table class="board" style="width:50%;border: 1px solid black">
     {% for x in 0..2 %}
       <tr class="row" style="border: 1px solid black">
